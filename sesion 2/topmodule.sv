@@ -1,8 +1,9 @@
 module top_module(
     input logic clk, reset,
     input logic switch_in,
+    output logic [6:0] switch_out,
     output logic [3:0] count,
-    output logic [7:0] BCD7_out,
+    output logic [6:0] BCD7_out,
     output logic fib_out
 );
 
@@ -24,7 +25,7 @@ module top_module(
 
     switch switch_inst(
         .switch_in(switch_in),
-        .switch_out(BCD7_out)  
+        .switch_out(switch_out)  
     );
 
 endmodule
