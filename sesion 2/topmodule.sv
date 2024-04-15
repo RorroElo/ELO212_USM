@@ -1,7 +1,7 @@
 module top_module(
     input logic clk, reset,
     input logic switch_in,
-    output logic [6:0] switch_out,
+    output logic switch_out,
     output logic [3:0] count,
     output logic [6:0] BCD7_out,
     output logic fib_out
