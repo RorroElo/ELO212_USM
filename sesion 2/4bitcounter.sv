@@ -5,7 +5,7 @@ module counter_4bit(
 
     always_ff @(posedge clk) begin
         if (reset)
-            count <= 4'b0;
+            count <= 'b0;
         else
             count <= count + 1;
     end
