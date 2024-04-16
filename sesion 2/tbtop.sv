@@ -29,7 +29,9 @@ module tb_top_module();
         switch_in = 1'b0;
         #1
         reset = 1;
-        #30
+        #5
         reset = 0;
+        #100
+        $finish;
     end
 endmodule

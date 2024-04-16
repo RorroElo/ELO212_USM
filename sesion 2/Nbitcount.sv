@@ -1,4 +1,4 @@
-module counter_Nbits #(parameter N=4)
+module counter_Nbits #(parameter N=4)(
     input logic clk, reset,
     output logic [N-1:0] count
     );
