@@ -6,9 +6,9 @@ module tb_top_module();
     logic [3:0] count;
     logic [6:0] BCD7_out;
     logic fib_out;
-    logic [6:0]switch_out;
+    logic switch_out;
 
-    // Instancias de los m�dulos bajo test (DUT)
+
     top_module topmoduleDUT(
         .clk (clk),
         .reset (reset),
@@ -25,8 +25,6 @@ module tb_top_module();
         clk = 0;
         #4
         switch_in = 1'b1;
-        #6
-        switch_in = 1'b0;
         #1
         reset = 1;
         #30
