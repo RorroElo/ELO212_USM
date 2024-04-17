@@ -1,8 +1,8 @@
-module tb_asincronico();
+module tb_sincronico();
     logic A, B, clk, reset;
     logic C;
 
-    asincronico DUT(
+    sincronico DUT(
         .clk(clk),
         .reset(reset),
         .A(A),
@@ -14,10 +14,12 @@ module tb_asincronico();
 
     initial begin
         clk = 0;
-        reset = 1;
+        reset = 10;
         A = 1;
         B = 0;
-        #22
+        #8
+        reset = 1;
+        #12
         reset = 0;
     end
 endmodule 

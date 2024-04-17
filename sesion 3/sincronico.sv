@@ -4,7 +4,7 @@ module sincronico (
 );
     
     always_ff @( posedge clk ) begin
-        if (reset)
+        if (reset) 
             C = 0; 
         else
             C = A + B;
