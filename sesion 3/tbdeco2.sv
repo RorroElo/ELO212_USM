@@ -14,5 +14,7 @@ module tbdeco();
         A = 2'd2;
         #2
         A = 2'd3;
+        #2
+        $finish;
     end
 endmodule
