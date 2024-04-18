@@ -1,11 +1,10 @@
-`timescale 1ns/1ps
 
 module tbclkdiv();
     logic clk_in;
     logic reset;
     logic clk_out;
 
-    Clock_Divider #(100, 30)DUT(
+    Clock_Dividercf DUT(
         .clk_in(clk_in),
         .reset(reset),
         .clk_out(clk_out)

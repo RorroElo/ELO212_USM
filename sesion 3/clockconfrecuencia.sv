@@ -1,10 +1,10 @@
-module Clock_Divider #(parameter frec_out = 40, parameter frec_in = 100 )( 
+module Clock_Dividercf #(parameter frec_out = 30, parameter frec_in = 100_000_000 )( 
     input logic clk_in,
     input logic reset,
     output logic clk_out
     );
   
-    localparam COUNTER_MAX = (1/(frec_out) * (frec_in)*(10**9));
+    localparam COUNTER_MAX = (((frec_in)/(frec_out) )*(1000000000));
     localparam DELAY_WIDTH = $clog2(COUNTER_MAX);
     logic [DELAY_WIDTH-1:0] counter = 'd0;
   
