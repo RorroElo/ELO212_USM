@@ -1,4 +1,4 @@
-module Clock_divider2#(
+module Clock_divider2 #(
     parameter  clk_in_f_mhz = 100,
     parameter  clk_out_f_mhz = 50
 )

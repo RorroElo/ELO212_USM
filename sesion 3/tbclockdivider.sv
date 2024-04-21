@@ -5,7 +5,7 @@ module tb_counter(
     logic reset;
     logic clk_out;
     
-    Clock_divider #(.COUNTER_MAX(1250000)) DUT(
+    Clock_Divider #(.COUNTER_MAX(1250000)) DUT(
         .clk_in(clk_in),
         .reset(reset),
         .clk_out(clk_out)
