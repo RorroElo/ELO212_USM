@@ -1,25 +1,29 @@
-`timescale 1ns / 1ps
+module tb_counter(
 
-module tbclkdiv();
+    );
     logic clk_in;
     logic reset;
     logic clk_out;
-
-    Clock_Divider DUT(
+    
+    Clock_divider #(.COUNTER_MAX(1250000)) DUT(
         .clk_in(clk_in),
         .reset(reset),
         .clk_out(clk_out)
-    );
-    
+        
+        
+    );   
     always #5 clk_in = ~clk_in;
 
     initial begin
         clk_in = 0;
-        reset = 0;
-        #5
+        reset=0;
+        #10
         reset = 1;
-        #5
-        reset = 0;
+        #10
+        reset=0;
+    end 
+    
+   
+    
         
-    end
 endmodule

@@ -1,25 +1,31 @@
-module Clock_Dividercf #(parameter frec_out = 30, parameter frec_in = 100000000 )( 
+module Clock_divider2#(
+    parameter  clk_in_f_mhz = 100,
+    parameter  clk_out_f_mhz = 50
+)
+(
     input logic clk_in,
     input logic reset,
     output logic clk_out
-    );
-    
-    localparam DELAY_WIDTH = $clog2((frec_in)/(2*(frec_out)));
-    logic [DELAY_WIDTH-1:0] counter = 'd0;
-  
+);
+
+localparam real  clk_in_period_ns = 1.0 / clk_in_f_mhz;// real hace que se usen los decimales otorgados
+localparam real  clk_out_period_ns = 1.0 / clk_out_f_mhz;
+
+localparam real cycles_per_output_pulse = clk_in_f_mhz / clk_out_f_mhz / 2.0; //Aca pusimos 2.0 ya que sino, no trabajaba en real
+
+logic [31:0] counter_reg = 0;
+
 always_ff @(posedge clk_in) begin
     if (reset == 1'b1) begin
-        counter <= 'd0;
+        counter_reg <= 'd0;
         clk_out <= 0;
-    end 
-    else if (counter == integer((frec_in)/(2*(frec_out)))-1) begin
-        counter <= 'd0;
+    end else if (counter_reg >= cycles_per_output_pulse - 1) begin
+        counter_reg <= 0;
         clk_out <= ~clk_out;
-    end 
-    else begin
-        counter <= counter + 'd1;
-        clk_out <= clk_out;
+    
+    end else begin
+        counter_reg <= counter_reg + 1;
     end
-   end
+end
+
 endmodule
-/*hacer un modulo que haga la division y otro mas que llame ambos, el de la division y el divisor*/
