@@ -1,4 +1,4 @@
-module Clock_Divider #(parameter COUNTER_MAX = 4)( 
+module Clock_Divider #(parameter COUNTER_MAX = 1666666)( 
     input logic clk_in,
     input logic reset,
     output logic clk_out

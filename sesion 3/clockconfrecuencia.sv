@@ -1,11 +1,10 @@
-module Clock_Dividercf #(parameter frec_out = 30, parameter frec_in = 100_000_000 )( 
+module Clock_Dividercf #(parameter frec_out = 30, parameter frec_in = 100000000 )( 
     input logic clk_in,
     input logic reset,
     output logic clk_out
     );
-  
-    localparam COUNTER_MAX = (((frec_in)/(frec_out) )*(1000000000));
-    localparam DELAY_WIDTH = $clog2(COUNTER_MAX);
+    
+    localparam DELAY_WIDTH = $clog2((frec_in)/(2*(frec_out)));
     logic [DELAY_WIDTH-1:0] counter = 'd0;
   
 always_ff @(posedge clk_in) begin
@@ -13,7 +12,7 @@ always_ff @(posedge clk_in) begin
         counter <= 'd0;
         clk_out <= 0;
     end 
-    else if (counter == COUNTER_MAX-1) begin
+    else if (counter == integer((frec_in)/(2*(frec_out)))-1) begin
         counter <= 'd0;
         clk_out <= ~clk_out;
     end 
@@ -23,3 +22,4 @@ always_ff @(posedge clk_in) begin
     end
    end
 endmodule
+/*hacer un modulo que haga la division y otro mas que llame ambos, el de la division y el divisor*/
