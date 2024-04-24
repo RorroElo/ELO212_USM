@@ -4,8 +4,8 @@ module BCD_to_sevenSeg (
 );
     always_comb begin
         case(BCD_in)
-            4'd0:   sevenSeg = 7'b1111110;
-            4'd1:   sevenSeg = 7'b1110000;
+            4'd0:   sevenSeg = 7'b0000001;
+            4'd1:   sevenSeg = 7'b1001111;
             4'd2:   sevenSeg = 7'b0010010;
             4'd3:   sevenSeg = 7'b0000110;
             4'd4:   sevenSeg = 7'b1001100;
