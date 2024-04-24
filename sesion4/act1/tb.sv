@@ -19,7 +19,7 @@ module tbact1();
         clock = 0;
         reset = 1;
         HEX_in = 32'd123456;
-        #3
+        #12
         reset = 0;
         #200
         $finish

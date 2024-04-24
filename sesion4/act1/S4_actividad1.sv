@@ -30,20 +30,19 @@ module S4_actividad1(
     );
 
     
-    // Asignación de ceros durante el reset
         always_ff @(posedge clock) begin
         if (reset) 
-            segments <= 7'b0000000;
+            segments <= 7'b1111111;
             anodes <= 8'b00000000;
         end 
-            logic [2:0] cable_count;
+            logic [2:0] cable_count; // cable para llevar los datos del contador a los otro modulos
             counter_Nbits counterDUT(
                 .clock(clock),
                 .reset(reset),
                 .count(cable_count)
             );    
 
-            logic [3:0] cable_HEX_in;
+            logic [3:0] cable_HEX_in; // cable para llevar los digitos a los otro modulos
             mux_4 DUT1(
                 .disp1(HEX_in[3:0]),
                 .disp2(HEX_in[7:4]),
@@ -54,15 +53,14 @@ module S4_actividad1(
                 .disp7(HEX_in[27:24]),
                 .disp8(HEX_in[31:28]),
                 .sel(cable_count),
-                .out(cable_HEX_in));
+                .out(cable_HEX_in)
+            );
 
-            // Decodificador para convertir el contador en selección de anodos
             deco_N2 deco(
                 .A(cable_count),
                 .one_hot(anodes)
             );
-
-            // Selección de un solo display de 7 segmentos
+            
             BCD_to_sevenSeg BCD_to_sevenSegDUT(
                 .BCD_in(cable_HEX_in),
                 .sevenSeg(segments)
