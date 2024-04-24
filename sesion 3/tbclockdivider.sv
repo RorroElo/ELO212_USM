@@ -4,7 +4,7 @@ module tbclkdiv();
     logic reset;
     logic clk_out;
 
-    Clock_Dividercf DUT(
+    clock_freq_def DUT(
         .clk_in(clk_in),
         .reset(reset),
         .clk_out(clk_out)
