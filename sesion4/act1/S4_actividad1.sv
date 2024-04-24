@@ -31,14 +31,14 @@ module S4_actividad1(
 
     
     // Asignación de ceros durante el reset
-    always_ff @(posedge clock) begin
+        always_ff @(posedge clock) begin
         if (reset) 
             segments <= 7'b0000000;
             anodes <= 8'b00000000;
-    end      
+        end 
             logic [2:0] cable_count;
             counter_Nbits counterDUT(
-                .clk(clock),
+                .clock(clock),
                 .reset(reset),
                 .count(cable_count)
             );    
