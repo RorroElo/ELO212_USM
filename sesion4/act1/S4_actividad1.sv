@@ -33,7 +33,7 @@ module S4_actividad1(
         always_ff @(posedge clock) begin
         if (reset) 
             segments <= 7'b1111111;
-            anodes <= 8'b00000000;
+            anodes <= 8'b11111111;
         end 
             logic [2:0] cable_count; // cable para llevar los datos del contador a los otro modulos
             counter_Nbits counterDUT(

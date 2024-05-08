@@ -4,7 +4,7 @@ module deco_N2 (
 );
 
     always_comb begin
-        one_hot = 'b0;
-        one_hot[A] = 1;
+        one_hot = 8'b11111111;
+        one_hot[A] = 0;
     end
 endmodule

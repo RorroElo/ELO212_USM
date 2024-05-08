@@ -21,32 +21,32 @@
 
 
 module Clock_divider2#(
-    parameter  clk_in_f_mhz = 100,
-    parameter  clk_out_f_mhz = 50
+    parameter  clk_in_f = 100000000,
+    parameter  clk_out_f = 50000000
 )
 (
     input logic clk_in,
-    input logic reset,
+    input logic resetf,
     output logic clk_out
 );
 
-localparam real  clk_in_period_ns = 1.0 / clk_in_f_mhz;// real hace que se usen los decimales otorgados
-localparam real  clk_out_period_ns = 1.0 / clk_out_f_mhz;
+localparam DELAY_WIDTH = $clog2(cycles_per_output_pulse);
 
-localparam real cycles_per_output_pulse = clk_in_f_mhz / clk_out_f_mhz / 2.0; //Aca pusimos 2.0 ya que sino, no trabajaba en real
+localparam  cycles_per_output_pulse = clk_in_f / (clk_out_f * 2); //Aca pusimos 2.0 ya que sino, no trabajaba en real
 
-logic [31:0] counter_reg = 0;
+logic [DELAY_WIDTH - 1:0] counter_reg = 'd0;
 
 always_ff @(posedge clk_in) begin
-    if (reset == 1'b1) begin
+    if (resetf == 1'b1) begin
         counter_reg <= 'd0;
         clk_out <= 0;
-    end else if (counter_reg >= cycles_per_output_pulse - 1) begin
-        counter_reg <= 0;
+    end else if (counter_reg == cycles_per_output_pulse - 1) begin
+        counter_reg <= 'd0;
         clk_out <= ~clk_out;
     
     end else begin
-        counter_reg <= counter_reg + 1;
+        counter_reg <= counter_reg + 'd1;
+        clk_out <= clk_out;
     end
 end
 
