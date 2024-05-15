@@ -1,4 +1,4 @@
-module S4_actividad3 #(parameter M=8)(
+module S4_actividad3xd #(parameter M=8)(
     input logic [M-1:0]A,[M-1:0]B,        //Entrada M bits
     input logic [1:0]OpCode,             // Codigo de operacion
     output logic [M-1:0]Result,         //Salida M bits
