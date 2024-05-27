@@ -22,7 +22,7 @@ always_comb begin
         4'd13 : sevenSeg = ~7'b0111101; // D
         4'd14 : sevenSeg = ~7'b1001111; // E
         4'd15 : sevenSeg = ~7'b1000111; // F
-        default: sevenSeg = ~7'b0000000; // Apagar todos los segmentos si no hay coincidencia
+        // Apagar todos los segmentos si no hay coincidencia
     endcase
 end
 

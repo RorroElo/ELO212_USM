@@ -9,11 +9,11 @@ module alufpgafin(
     logic [6:0]A;
     logic [6:0]B;
     logic [1:0]op_code;
-    logic [4:0]flags;
+    logic [4:0]Flags;
     logic [7:0]Result;
     logic [6:0]SevenSeg;
     
-    
+    assign LEDs = Flags;
     assign CA= SevenSeg[6];
     assign CB= SevenSeg[5];
     assign CC= SevenSeg[4];
@@ -49,7 +49,7 @@ module alufpgafin(
     );
 
     logic iteraciones;
-    contador2bits 2bitcount(
+    contador2bits twobitcount(
         .clk (clk_500hz), 
         .reset (reset),
         .count (iteraciones)
@@ -81,7 +81,7 @@ module alufpgafin(
     );
 
     SevenSeg SevensegFinal(
-        .BCD_in (Result),
+        .BCD_in (selectordelmux),
         .sevenSeg (SevenSeg)
     );
 endmodule
