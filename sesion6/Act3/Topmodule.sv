@@ -1,26 +1,26 @@
 module alufpgafin(
-    input logic clk, reset,
+    input logic CLK100MHZ, BTNC,
     input logic [15:0] SW,
-    output logic [4:0] LEDs,
+    output logic [4:0] LED,
     output logic CG, CF, CE, CD, CC, CB, CA,
-    output logic [7:0] anodirijillos
+    output logic [7:0] AN
 );
 
     logic [6:0]A;
     logic [6:0]B;
     logic [1:0]op_code;
     logic [4:0]Flags;
-    logic [7:0]Result;
-    logic [6:0]SevenSeg;
+    logic [6:0]Result;
+    logic [6:0]Seg;
     
-    assign LEDs = Flags;
-    assign CA= SevenSeg[6];
-    assign CB= SevenSeg[5];
-    assign CC= SevenSeg[4];
-    assign CD= SevenSeg[3];
-    assign CE= SevenSeg[2];
-    assign CF= SevenSeg[1];
-    assign CG= SevenSeg[0];
+    assign LED = Flags;
+    assign CA= Seg[6];
+    assign CB= Seg[5];
+    assign CC= Seg[4];
+    assign CD= Seg[3];
+    assign CE= Seg[2];
+    assign CF= Seg[1];
+    assign CG= Seg[0];
     
     assign A[0] = SW[9];
     assign A[1] = SW[10];
@@ -43,22 +43,22 @@ module alufpgafin(
     
     logic clk_500hz;
     ClockDivider ClkFrec500 (
-        .clk_in (clk),
-        .reset (reset),
+        .clk_in (CLK100MHZ),
+        .reset (BTNC),
         .clk_out (clk_500hz)
     );
 
-    logic iteraciones;
+    logic [1:0]iteraciones;
     contador2bits twobitcount(
         .clk (clk_500hz), 
-        .reset (reset),
+        .reset (BTNC),
         .count (iteraciones)
     );
 
     logic Anod;
     deco asignAnod(
         .sel (iteraciones),
-        .Anod (anodirijillos)    
+        .Anod (AN)    
     );
 
     S4_actividad3 ALUX(
@@ -70,9 +70,9 @@ module alufpgafin(
     ); 
 
     logic [3:0]Result1 = Result[3:0];
-    logic [3:0]Result2 = Result[7:4];
+    logic [2:0]Result2 = Result[6:4];
 
-    logic selectordelmux;
+    logic [3:0]selectordelmux;
     Multiplex_temp Iteralo(
         .cifra1 (Result1), 
         .cifra2 (Result2), 
@@ -82,6 +82,6 @@ module alufpgafin(
 
     SevenSeg SevensegFinal(
         .BCD_in (selectordelmux),
-        .sevenSeg (SevenSeg)
+        .sevenSeg (Seg)
     );
 endmodule
