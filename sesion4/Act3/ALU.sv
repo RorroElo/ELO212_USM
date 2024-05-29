@@ -1,4 +1,4 @@
-module S4_actividad3 #(parameter M = 8)(
+module S4_actividad3 #(parameter M = 7)(
     input logic [M-1:0] A,B,
     input logic [1:0] OpCode,  
     output logic [M-1:0] Result,
@@ -8,7 +8,7 @@ module S4_actividad3 #(parameter M = 8)(
     logic P;
  
     logic V, C, Z, N, F; 
-    
+    assign P = ^Result ; 
     always_comb begin
        case(OpCode)
         2'b00: begin //Resta
@@ -87,7 +87,6 @@ module S4_actividad3 #(parameter M = 8)(
         
         ///Cantidad de 1's pares en el bus
          
-        assign P = ^Result; 
         if  (P == 1'b1) begin
            Flags[0] = 1'b1; 
         end
