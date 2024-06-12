@@ -1,0 +1,16 @@
+module S9_actividad3 #(
+	input logic clk ,
+	input logic reset ,
+	input logic Enter , Undo ,
+	input logic [15:0] DataIn ,
+
+	output logic [6:0] Segments ,
+	output logic [7:0] Anodes ,
+	output logic [4:0] Flags ,
+	output logic [2:0] Status
+);
+
+ aqui tienen que ir los llamados de las conecciones a la FPGA
+
+	aca van los llamados a los modulos ya utilizados en la sesion 6:
+		MUX4, sevenSeg, ClockDivider, selectorAnod,etc

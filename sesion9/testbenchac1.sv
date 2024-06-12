@@ -22,35 +22,35 @@ module tbact1();
 
     initial begin
         clk = 0;
-        #5
+        #25
         reset = 1;
         Enter = 0;
-        #5
+        #25
         reset = 0;
         DataIn = 16'h3F;
         Enter = 1;
-        #5 Enter = 0;
-        #5
+        #25 Enter = 0;
+        #25
         DataIn = 16'h12;
         Enter = 1;
-        #5 Enter = 0;
+        #25 Enter = 0;
         DataIn = b'00;
         Enter = 1;
-        #5 Enter = 0;
-        #40
+        #25 Enter = 0;
+        #60
         Enter = 1;
-        #5 Enter = 0;
+        #25 Enter = 0;
         DataIn = 16'h2A;
         Enter = 1;
-        #5 Enter = 0;
-        #5
+        #25 Enter = 0;
+        #25
         DataIn = 16'h7B;
         Enter = 1;
-        #5 Enter = 0;
+        #25 Enter = 0;
         DataIn = b'00;
         Enter = 1;
-        #5 Enter = 0;
-        #40        
+        #25 Enter = 0;
+        #60        
         $finish;
     end
 endmodule
