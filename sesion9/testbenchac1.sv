@@ -13,7 +13,7 @@ module tbact1();
         .reset(reset),
         .Enter(Enter), 
         .DataIn(DataIn),
-        .ToDisplay(ToDisplay,)
+        .ToDisplay(ToDisplay),
         .Flags(Flags),
         .Status(Status)
     );
@@ -22,34 +22,40 @@ module tbact1();
 
     initial begin
         clk = 0;
-        #25
         reset = 1;
         Enter = 0;
         #25
         reset = 0;
         DataIn = 16'h3F;
         Enter = 1;
-        #25 Enter = 0;
+        #25 
+        Enter = 0;
         #25
         DataIn = 16'h12;
         Enter = 1;
-        #25 Enter = 0;
-        DataIn = b'00;
+        #25 
+        Enter = 0;
+        DataIn = 2'b00;
         Enter = 1;
-        #25 Enter = 0;
+        #25 
+        Enter = 0;
         #60
         Enter = 1;
-        #25 Enter = 0;
+        #25 
+        Enter = 0;
         DataIn = 16'h2A;
         Enter = 1;
-        #25 Enter = 0;
+        #25 
+        Enter = 0;
         #25
         DataIn = 16'h7B;
         Enter = 1;
-        #25 Enter = 0;
-        DataIn = b'00;
+        #25 
+        Enter = 0;
+        DataIn = 2'b00;
         Enter = 1;
-        #25 Enter = 0;
+        #25 
+        Enter = 0;
         #60        
         $finish;
     end
