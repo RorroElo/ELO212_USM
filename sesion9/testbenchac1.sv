@@ -26,37 +26,20 @@ module tbact1();
         Enter = 0;
         #25
         reset = 0;
-        DataIn = 16'h3F;
+        DataIn = 16'b1111111111111111;
         Enter = 1;
         #25 
         Enter = 0;
         #25
-        DataIn = 16'h12;
+        DataIn = 16'b1111111111111110;
         Enter = 1;
         #25 
         Enter = 0;
-        DataIn = 2'b00;
+        DataIn = 2'b01;
         Enter = 1;
         #25 
         Enter = 0;
         #60
-        Enter = 1;
-        #25 
-        Enter = 0;
-        DataIn = 16'h2A;
-        Enter = 1;
-        #25 
-        Enter = 0;
-        #25
-        DataIn = 16'h7B;
-        Enter = 1;
-        #25 
-        Enter = 0;
-        DataIn = 2'b00;
-        Enter = 1;
-        #25 
-        Enter = 0;
-        #60        
         $finish;
     end
 endmodule
